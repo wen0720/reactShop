@@ -74,6 +74,21 @@ function deleteCartProduct (id) {
 }
 
 /**
+ * 取得後台產品
+ * @param {number} page
+ */
+function getAdminProduct (page = 1) {
+  return axios.get(`/admin/products?page=${page}`)
+    .then(res => {
+      return res.data
+    })
+    .catch(err => ({
+      message: err.message,
+      success: false
+    }))
+}
+
+/**
  * 新增購物車
  * @param {number} id
  * @param {number} qty
@@ -154,5 +169,6 @@ export {
   addToCart,
   login,
   checkLoginStatus,
-  logout
+  logout,
+  getAdminProduct
 }

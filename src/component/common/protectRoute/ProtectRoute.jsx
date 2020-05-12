@@ -10,7 +10,6 @@ function PrivateRoute({ children, ...rest }) {
   let [ cookieId, setCookieId ] = useState(jsCookie.get('loginUId'))
   const isLogged = useSelector(state => state.userReducer.uid !== '')
   useEffect(() => {
-    console.log('PrivateRouteEffect')
     setCookieId(jsCookie.get('loginUId'))
   })
 

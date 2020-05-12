@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Route, Switch, useRouteMatch, useHistory } from 'react-router-dom'
 
 import SideBar from '@component/admin/SideBar'
+import ProductTable from '@component/admin/Product'
 
 const admin = () => {
   const { path, url } = useRouteMatch()
+  const history = useHistory()
+
+  useEffect(() => {
+    if(path === '/admin') {
+      history.push('/admin/product')
+    }
+  }, [])
 
   return (
     <Container fluid>
@@ -16,7 +24,7 @@ const admin = () => {
         <Col md="9">
           <Switch>
             <Route path={`${path}/product`}>
-              <h1>product</h1>
+              <ProductTable />
             </Route>
             <Route path={`${path}/coupon`}>
               <h1>coupon</h1>
