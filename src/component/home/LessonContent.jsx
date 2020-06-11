@@ -1,5 +1,5 @@
 // react
-import React from 'react'
+import React, { useState } from 'react'
 
 // 3rd praty
 import styled from 'styled-components'
@@ -41,11 +41,11 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-prev{
-  left: -25px;
+    left: -25px;
   }
 
   .slick-next{
-  right: -25px;
+    right: -25px;
   }
 
   .slick-prev:before, .slick-next:before{
@@ -133,67 +133,67 @@ const Lesson = styled.div`
 }
 `
 
-class LessonContent extends React.Component {
-  state = {
-    setting: {
-      infinite: false,
-      slidesToShow: 1,
-      autoplay: false,
-      autoplaySpeed: 2000
+const LessonContent = () => {
+  const sliderSettingDefault = {
+    infinite: false,
+    slidesToShow: 1,
+    autoplay: false,
+    autoplaySpeed: 2000
+  }
+
+  const sliderContentDefault = [
+    {
+      title: '客製化體態分析',
+      des: '全身性體態盲點檢測：<br/>經由教練評估設計解決方案。',
+      des_eng: 'Personal Trainer',
+      img: ImgLesson01
     },
-    slider: [
-      {
-        title: '客製化體態分析',
-        des: '全身性體態盲點檢測：<br/>經由教練評估設計解決方案。',
-        des_eng: 'Personal Trainer',
-        img: ImgLesson01
-      },
-      {
-        title: '完整體態訓練',
-        des: '根據課表進行有效訓練，調整體態均衡，提升肌力。',
-        des_eng: 'Body Remodeling',
-        img: ImgLesson02
-      },
-      {
-        title: '個人飲食調整',
-        des: '提供飲食建議，熱量計算，輔助體態雕塑。',
-        des_eng: 'Diet Adjustment',
-        img: ImgLesson03
-      }
-    ]
-  }
-  render () {
-    const { setting, slider } = this.state
-    return (
-      <Lesson>
-        <section className="lesson">
-            <div className="inbox">
-                <div className="title">
-                    <img src={ImgtitleLesson} />
-                </div>
-                <StyledSlider {...setting} className="lesson_introList">
-                  {
-                    slider.map(item => (
-                      <div
-                        className="lesson_intro"
-                        key={item.title}>
-                        <div className="lesson_imgbox">
-                            <img src={item.img} />
-                        </div>
-                        <div className="lesson_txt">
-                            <span>{item.des_eng}</span>
-                            <h3>{item.title}</h3>
-                            <p dangerouslySetInnerHTML={{__html: item.des}}></p>
-                        </div>
+    {
+      title: '完整體態訓練',
+      des: '根據課表進行有效訓練，調整體態均衡，提升肌力。',
+      des_eng: 'Body Remodeling',
+      img: ImgLesson02
+    },
+    {
+      title: '個人飲食調整',
+      des: '提供飲食建議，熱量計算，輔助體態雕塑。',
+      des_eng: 'Diet Adjustment',
+      img: ImgLesson03
+    }
+  ]
+
+  const [sliderSetting, setSliderSetting] = useState(sliderSettingDefault)
+  const [sliderContent, setSliderContent] = useState(sliderContentDefault)
+
+  return (
+    <Lesson>
+      <section className="lesson">
+          <div className="inbox">
+              <div className="title">
+                  <img src={ImgtitleLesson} />
+              </div>
+              <StyledSlider {...sliderSetting} className="lesson_introList">
+                {
+                  sliderContent.map(item => (
+                    <div
+                      className="lesson_intro"
+                      key={item.title}>
+                      <div className="lesson_imgbox">
+                          <img src={item.img} />
                       </div>
-                    ))
-                  }
-                </StyledSlider>
-            </div>
-        </section>
-      </Lesson>
-    )
-  }
+                      <div className="lesson_txt">
+                          <span>{item.des_eng}</span>
+                          <h3>{item.title}</h3>
+                          <p dangerouslySetInnerHTML={{__html: item.des}}></p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </StyledSlider>
+          </div>
+      </section>
+    </Lesson>
+  )
 }
 
 export default LessonContent

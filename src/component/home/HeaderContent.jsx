@@ -32,20 +32,18 @@ const Header = styled.header`
 }
 `
 
-class HeaderContent extends React.Component {
-  render() {
-    return (
-      <Header>
-          <div className="mainContent">
-              <div className="slogan">
-                  <h2>Fitness Life</h2>
-                  <p>Your Personal Coach</p>
-              </div>
-              <div className="mainbtn gradient01"></div>
-          </div>
-      </Header>
-    )
-  }
+const HeaderContent = () => {
+  return (
+    <Header>
+        <div className="mainContent">
+            <div className="slogan">
+                <h2>Fitness Life</h2>
+                <p>Your Personal Coach</p>
+            </div>
+            <div className="mainbtn gradient01"></div>
+        </div>
+    </Header>
+  )
 }
 
 export default HeaderContent
